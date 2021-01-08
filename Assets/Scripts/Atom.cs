@@ -77,6 +77,7 @@ public class Atom : MonoBehaviour
         ids.Add(id);
         ids.Add(bondID);
 
+        if (bonds[bondID].GetComponent<Bond>().collided == null) return;
         collided = bonds[bondID].GetComponent<Bond>().collided.transform.parent.gameObject;
         transform.parent.GetComponent<Molecule>().atomCollided(ids);
 

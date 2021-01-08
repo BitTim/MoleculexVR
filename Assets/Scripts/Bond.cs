@@ -7,13 +7,13 @@ public class Bond : MonoBehaviour
     public int id = -1;
     public GameObject collided = null;
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
         if(id == -1) { return; }
 
-        collided = collision.collider.gameObject;
+        collided = collider.gameObject;
         if (collided.tag != "Bond") { collided = null;  return; }
 
-        transform.parent.GetComponent<Atom>().bondCollided(id);
+        transform.parent.gameObject.GetComponent<Atom>().bondCollided(id);
     }
 }

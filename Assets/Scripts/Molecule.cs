@@ -60,7 +60,7 @@ public class Molecule : MonoBehaviour
         atom.GetComponent<Atom>().setType(type);
         atom.GetComponent<Atom>().id = nextAtomID;
 
-        atoms[atomID].GetComponent<Atom>().atomsAtBonds[bondID] = nextAtomID;
+        if(atomID != -1 && bondID != -1) atoms[atomID].GetComponent<Atom>().atomsAtBonds[bondID] = nextAtomID;
         nextAtomID++;
 
         updateBoxCollider();
@@ -134,6 +134,8 @@ public class Molecule : MonoBehaviour
     public void atomCollided(List<int> ids)
     {
         GameObject collidedAtom = atoms[ids[0]].GetComponent<Atom>().collided;
+
+        Debug.Log("Molecules Collided via Bonds");
 
         addMolecule(ids[0], ids[1], collidedAtom.transform.parent.gameObject);
         atoms[ids[0]].GetComponent<Atom>().collided = null;

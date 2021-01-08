@@ -46,7 +46,7 @@ public class HandPresence : MonoBehaviour
 
     void Update()
     {
-        if(!targetDevice.isValid) { tryInit(); }
+        if(!targetDevice.isValid) { tryInit(); return; }
 
         spawnedController.SetActive(showController);
         spawnedHand.SetActive(!showController);
